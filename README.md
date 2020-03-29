@@ -2,7 +2,9 @@
 
 ## Identifying resources for neural tube defect prevention and treatment in Bangladesh
 
-### This map shows three important variables that may help prevent and treat neural tube defects in Bangladesh.
+This description accompanies [this map](https://jfobrycki.github.io/bangladesh-healthfacilities/) that you can view on GitHub
+
+### The map shows three important variables that may help prevent and treat neural tube defects in Bangladesh.
 
 1. The percent of healthcare facilities that offer antenatal care everyday
 2. The percent of healthcare facilities that offer folic acid tablets
