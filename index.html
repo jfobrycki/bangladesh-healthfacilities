@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=utf-8 />
+	<title>Neural tube defect prevention and treatment in Bangladesh</title><!--Updated title-->
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	<link rel='icon' href='https://newmapsplus.github.io/favicon.ico' type='image/x-icon' />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,900i" rel="stylesheet"><!--Updated font-->
+
+	<style>
+
+		body {
+			margin: 0;
+			padding: 0;
+			background: #e3e3e6;
+			font-family: 'Source Sans Pro', sans-serif;
+			font-weight: 300;
+			color: #000000;
+			font-size: 100%;
+			/* 16px is default browser size */
+
+		}
+
+		header,
+		section,
+		footer {
+			width: 80%;
+			margin: 10px auto;
+		}
+
+		h1 {
+			font-weight: 900;
+			font-size: 2.8em;
+			font-style: italic;
+			/* The em unit. 3x the current size */
+			letter-spacing: .02em;
+			margin: 5px 0;
+			/* text-transform: uppercase; */
+		}
+
+		h2 {
+			font-weight: 300;
+			color: #000000;
+			font-size: 2.2em;
+			letter-spacing: .06em;
+			font-style: italic;
+			margin: 5px 0;
+		}
+
+		h3 {
+			font-weight: 300i;
+			font-size: 1.5em;
+			margin-bottom: 5px;
+		}
+
+		p {
+			font-size: 1.3em;
+			line-height: 1.8em;
+			margin-bottom: 5px;
+		}
+
+		a {
+			color: #004A8B;
+			font-weight: 400;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		ul {
+			padding: 0px 20px 4px 20px;
+			font-size: 1.1em;
+			line-height: 1.2em;
+			color: #000000;
+		}
+
+		li {
+			margin: 10px 0
+		}
+
+		hr {
+			margin: 20px 0;
+			border: 0;
+			height: 1px;
+			background: #63666a;
+
+		}
+
+		.linkbox {
+			margin: 3px 0 20px 0;
+			display: block;
+			font-size: 0.9em;
+			font-weight: 300;
+			line-height: 1.3em;
+		}
+
+		#map {
+			width: 100%;
+			height: 600px;
+			margin: 20px auto;
+
+		}
+
+		.max-image-width {
+			width: 100%;
+		}
+		/* Adding tooltip specificiations*/
+		.leaflet-tooltip { 
+    		padding: 0px 4px 0px 4px !important;
+			opacity: 0.9;
+			background-color: '#F5FFFA';
+			font-size:small /* increasing this font size cause a tooltip to overlap with the layer list on the right side of the map, but moving the layer list to the left side could mak the map appear unbalanced? */
+		}					/* could also re-arrange the legend, layerlist and map source data to provide larger font on tooltip*/
+		/* Modifying how the control layers appear*/
+		.leaflet-control-layers{ 
+    		width:215px;
+    		background-position:3px 50% ;
+    		padding:3px;
+    		padding-left:5px;
+    		text-decoration:none;
+    		line-height:36px;
+			font-size: larger;
+		}
+
+		/* Use float property to make two-column layout */
+		.first-column {
+			float: left;
+			width: 49%;
+			padding-right: 2%;
+		}
+
+		.column {
+			float: left;
+			width: 49%;
+		}
+		/* Adding legend specifications*/
+		/* When modifying the legend size, sometimes each legend item would appear jumbled rather than all in one column, these settings seems to make the legend appear as expected, though it was generally through trial and error, likely a more efficient approach available*/
+		.legend {
+    		line-height: 18px;
+    		color: #000000;
+			background-color: white;
+			font-size: 20px;
+			width: 250px;
+    		height: 160px;
+		}
+		
+		.legend i {
+			width: 18px;
+    		height: 18px;
+    		float: left;
+    		margin-right: 6px;
+			margin-left: 10px;
+    		opacity: 1;
+			/* border: black; Attempt to have the legend colors have a border around each square*/
+		}
+
+		/* Clear floats after the columns */
+		.row::after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+		/* When browser is 900px wide or less */
+		@media screen and (max-width: 900px) {
+
+			.first-column,
+			.second-column {
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<h1>Neural tube defect prevention and treatment in Bangladesh</h1><!--New title-->
+	</header>
+
+	<section>
+		<div class="row">
+			<div id="map"></div>
+			<div class="first-column">
+				<h2>Description</h2>
+				<p> Access to antenatal (prenatal) care, folic acid supplements, and ultrasounds and sonograms are three factors that can improve maternal and fetal health. This map shows the percent of healthcare facilities in each division within Bangladesh that provides these services.
+				<br><br>Antenatal care and folic acid supplements are commonly available with generally >80% of healthcare facilities in each division reporting these services.
+				Access to ultrasounds and sonograms is lower, with less than 10% of facilties in each district reporting this equipment.
+				</p>
+				<p><b>Social links</b></p>
+			<ul>
+				<li>See my projects: <a href="https://github.com/jfobrycki">GitHub</a></li>
+				<li>Visit my LinkedIn account: <a href="https://www.linkedin.com/in/john-f-obrycki-1a3b032b">Profile</a></li>
+			</ul>
+			</div>
+			<div class="column">
+				<h2>Data sources</h2>
+				<p>
+				Data for the map came from the following two sources: <br>
+				1. <a href="https://gadm.org/data.html" target="new">GADM</a> - Bangladesh, administrative division (<i>level 1</i>)<br>
+				2. <a href="https://dghs.gov.bd/images/docs/Other_Publication/Bangladesh%20Health%20Facility%20Servey%202014.pdf">Bangladesh Health Facility Survey</a> - from the <a href="https://dghs.gov.bd/index.php/en/">Bangladesh Directorate General of Health Services</a><br>
+				<br>These two data sources were combined into a GeoJSON file within QGIS and then visualized using Leaflet.
+				</p>
+			</div>
+		</div>
+	<footer>
+		<hr>
+			<a href="https://newmapsplus.github.io">
+				<img src="https://newmapsplus.github.io/assets/graphics/logo-2018-nmp-75px-h-gray.png" alt="University of Kentucky Geography">
+			</a>
+	
+			<a href="https://uky-gis.github.io">
+				<img src="https://newmapsplus.github.io/assets/graphics/logo-2018-geography-75px-h.png" alt="University of Kentucky Geography">
+			</a>
+		</footer>
+	</section>
+
+	<!-- add Leaflet JS script -->
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+	<!-- add jQuery JS script -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<!-- add data source script-->
+	<script src="data/BangladeshANC.js"></script>
+	<script>
+
+	//Example of initial coding effort using the $.getJSON command that called the .geojson rather than the .js file
+	//I switched to using the .js approach because I was able to think through the steps for mapping and get the data to appear
+	//Using the $.getJSON approach could definitely work too	
+	//First variable created
+	// var countryLayer = $.getJSON("data/BangladeshANC.geojson", function(data) {
+	// var countryOutline = L.geoJson(BangladeshData, {
+	// style: function(feature) {
+	// return {
+	// color: '#000000',
+	// weight: 1,
+ 	// fillOpacity: 1,
+  	// fillColor: 'gray'
+ 	// }; //this bracket closes return
+	// }, //this bracket closes style
+	// }) //these brackets close L.geoJson 
+	// }); //these brackets close $.getJSON 
+
+//Generating the first variable map data
+//Mapping note: This dataset from 2014 reports data from 7 divisions in Bangladesh, however there are now 8 divisions. The GADM layer seems to report 7 administrative divisions. If more recent data are added across 8 divisions, the GADM map may need to be modified before merging in the data.
+var UltraData = L.geoJson(BangladeshData, {
+    style: function(feature) {
+  return {
+      color: '#000000',
+	  weight: 1,
+      fillOpacity: 1,
+      fillColor: getColorANC(feature.properties.PercentUltra)
+    }; //this bracket closes return
+  }, //this bracket closes style
+  	onEachFeature : function(feature,layer) { //onEach Feature changes for each map variable with the variable of interest appearing at the top of the tooltip and bolded and the other two variables appearing in alphabetial order and not bolded
+	var tooltip = `<b>Division: ${feature.properties.NAME_1}</b><br>
+				   <b>Percent of Healthcare Facilities Reporting</b><br>
+				   <b>Ultrasound/Sonogram equipment: ${feature.properties.PercentUltra}%</b><br>
+				   Antenatal care available each day: ${feature.properties.ANCDaily}%<br>
+				   Folic acid tablet availability: ${feature.properties.FolicAcidAvail}%<br>  
+				   `
+	layer.bindTooltip(tooltip);
+  	layer.on('mouseover', function() {
+	layer.setStyle({color:'#0000FF', weight: 4}); //when mouseover, the district outline changes
+		}); //these brackes close layer.on
+  	layer.on('mouseout', function() {
+	layer.setStyle({color:'#000000', weight: 1}); //when mouseout, the district outline returns to original value
+		}); //these brackets close layer.on
+	} //these brackets close onEachFeature
+}) //these brackets close L.geoJson
+
+//Generating the second variable map data using similar settings from above
+//This approach for making the map is coding intensive, as many steps are repeated and refactoring could be used too. I selected this coding approach because I could think through each of the steps and have the map work, and I know there are much more efficient coding solutions for this task
+var ANCData = L.geoJson(BangladeshData, {
+    style: function(feature) {
+  return {
+      color: '#000000',
+	  weight: 1,
+      fillOpacity: 1,
+      fillColor: getColorANC(feature.properties.ANCDaily)
+    }; //this bracket closes return
+  }, //this bracket closes style
+  	onEachFeature : function(feature,layer) { //onEachFeature changes so that this second variable is now first on the list and bolded
+	var tooltip = `<b>Division: ${feature.properties.NAME_1}</b><br>
+				   <b>Percent of Healthcare Facilities Reporting</b><br>
+				   <b>Antenatal care available each day: ${feature.properties.ANCDaily}%</b><br>
+				   Folic acid tablet availability: ${feature.properties.FolicAcidAvail}%<br> 
+				   Ultrasound/Sonogram equipment: ${feature.properties.PercentUltra}%<br> 
+				   `
+	layer.bindTooltip(tooltip);
+  	layer.on('mouseover', function() {
+	layer.setStyle({color:'#0000FF', weight: 4});
+		}); //these brackets close layer.on
+  	layer.on('mouseout', function() {
+	layer.setStyle({color:'#000000', weight: 1});
+		}); //these brackets close layer.on
+	} //these brackets close onEachFeature
+}) //these brackets close L.geoJson
+
+//Generating the third variable map data
+var FolicData = L.geoJson(BangladeshData, {
+    style: function(feature) {
+  return {
+      color: '#000000',
+	  weight: 1,
+      fillOpacity: 1,
+      fillColor: getColorANC(feature.properties.FolicAcidAvail)
+    }; //this bracket closes return
+  }, //this bracket closes style
+  	onEachFeature : function(feature,layer) { //another change in the tooltip as the third variable is now highlighted at the top of the list
+	var tooltip = `<b>Division: ${feature.properties.NAME_1}</b><br>
+				   <b>Percent of Healthcare Facilities Reporting</b><br>
+				   <b>Folic acid tablet availability: ${feature.properties.FolicAcidAvail}%</b><br>   
+				   Antenatal care available each day: ${feature.properties.ANCDaily}%<br>
+				   Ultrasound/Sonogram equipment: ${feature.properties.PercentUltra}%<br>
+				   `
+	layer.bindTooltip(tooltip);
+  	layer.on('mouseover', function() {	
+	layer.setStyle({color:'#0000FF', weight: 4});
+		}); //these brackets close layer.on
+  	layer.on('mouseout', function() {
+	layer.setStyle({color:'#000000', weight: 1});
+		}); //these brackets close layer.on
+	} //these brackets close onEachFeature
+}) //these brackets close L.geoJson
+
+//Creating a function to generate the colors based on the values of each variable
+//These color ramp options are from ColorBrewer
+function getColorANC(d) {
+    return d >= 100 ? '#998ec3': //An option to highlight if 100% of all facilities report a given condition
+		   d > 75  ? '#225ea8' :
+           d > 50   ? '#41b6c4' :
+           d > 25   ? '#a1dab4' :
+                      '#ffffcc';
+	} //closing the getColorANC function, I selected this option over creating breaks because the dataset contained only 7 values
+	  //these categories could be changed to match health guidelines/recommendations, for example could 95% or 100% be viewed as a key healthcare system goal?
+	  //coding adapted from the Leaflet tutorial on color https://leafletjs.com/examples/choropleth/
+
+// Making the map
+// Putting all the data and options together
+var options = {
+			center: [23.7, 90],
+			zoom: 7,
+			minZoom: 7, //locking the zoom to how the map first appears, if data were available at smaller administrative units, having the zoom functionality would be helpful for viewing the data more closely
+    		maxZoom: 7,
+			//This layers code is what adds the layers to the map, seems to be the equivalent of a .addTo(map) command
+			layers: [UltraData, ANCData, FolicData] //This approach is taken from the Leaflet tutorial about legends https://leafletjs.com/examples/layers-control/
+		}
+
+		// create a Leaflet map in our division container with id of 'map'
+		var map = L.map('map', options);
+
+		// Leaflet providers base map URL
+		// The basemap provided in this template file seems to give a nice contrast to the mapped values
+		var basemap_source =
+			'https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/dark_all/{z}/{x}/{y}.png'
+
+		// Leaflet providers attributes
+		var basemap_options = {
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+			subdomains: 'abcd',
+			maxZoom: 19
+		};
+
+		// request some basemap tiles and add to the map
+		var tiles = L.tileLayer(basemap_source, basemap_options).addTo(map);
+
+// The toggle buttons for the layers are created here
+var baseLayers = {
+		"<b style='color:#000000'>Daily Antenatal Care</b>": ANCData,	
+		"<b style='color:#000000'>Folic Acid Available</b>": FolicData,
+		"<b style='color:#000000'>Ultrasound/Sonogram Equipment</b>": UltraData
+	};
+
+	// This code shows an additional idea for having an outline of Bangladesh be an additional layer that users could toggle on/off, but this didn't seem to be necessary for the map to function
+	// Including a country outline could be helpful for given the mapped area a strong outline that could help offset the mapped data from the basemap
+	// var mainLayers = { 
+	// "Bangladesh" : countryOutline
+	// }
+
+// This command creates the control layers without the extra country outline file noted above
+// Collapsed: False keeps the layer window open permanently on the map
+L.control.layers(baseLayers, null,{collapsed:false}).addTo(map);
+
+// Settingup the legend
+var legend = L.control({position: 'bottomleft'});
+	legend.onAdd = function (map) {
+    	var div = L.DomUtil.create('div', 'info legend'),
+       		grades = [0, 25, 50, 75, 100],
+			labels = [];
+			// This adds in the map legend title
+			div.innerHTML += '<b>Percent of Healthcare Facilities Reporting</b><br><br>'
+    		// loop through our group intervals and generate a label with a colored square for each interval
+			// this legend formatting is based on the Leaflet chloropleth tutorial https://leafletjs.com/examples/choropleth/
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColorANC(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '%');
+    } //this closes the for
+    return div;
+}; //closes the legend.onAdd
+legend.addTo(map); //add the legend to the map
+
+map.removeControl(map.zoomControl); //remove the zoom control from the map since all the data are available at this larger country level, the zoom did not seem to add much to functionality
+
+</script>
+</body>
+
+</html>
