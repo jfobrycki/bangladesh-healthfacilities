@@ -1,4 +1,4 @@
-# Lab-10 Map Description
+# Lab-10 Map Description (Map created for course MAP 672, University of Kentucky, Winter session 2020)
 
 ## Identifying resources for neural tube defect prevention and treatment in Bangladesh
 
