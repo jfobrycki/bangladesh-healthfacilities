@@ -348,7 +348,7 @@ var options = {
 			minZoom: 7, //locking the zoom to how the map first appears, if data were available at smaller administrative units, having the zoom functionality would be helpful for viewing the data more closely
     		maxZoom: 7,
 			//This layers code is what adds the layers to the map, seems to be the equivalent of a .addTo(map) command
-			layers: [UltraData, ANCData, FolicData] //This approach is taken from the Leaflet tutorial about legends https://leafletjs.com/examples/layers-control/
+			layers: [ANCData, FolicData, UltraData] //This approach is taken from the Leaflet tutorial about legends https://leafletjs.com/examples/layers-control/
 		}
 
 		// create a Leaflet map in our division container with id of 'map'
