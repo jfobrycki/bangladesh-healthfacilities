@@ -158,7 +158,24 @@
 			font-size: 20px;
 			width: 250px;
     		height: 160px;
+			font-family: 'Source Sans Pro', sans-serif;
+			font-weight: 400;
+			font-size: 1.5em;
+			padding: 15px;
+			box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+			background: #fff;
+			border-radius: 5px;
 
+		}
+
+		.legend h2 {
+			font-family: 'Source Sans Pro', sans-serif;
+			font-weight: 400;
+			font-size: 1.4em;
+			letter-spacing: 0em;
+			font-style:normal;
+			margin: 10px 0;
+			line-height: 0.9em;
 		}
 		
 		.legend i {
@@ -405,7 +422,7 @@ var legend = L.control({position: 'bottomleft'});
        		grades = [0, 25, 50, 75, 100],
 			labels = [];
 			// This adds in the map legend title
-			div.innerHTML += '<b>Percent of Healthcare Facilities Reporting</b><br><br>'
+			div.innerHTML += '<h2>Percent of Healthcare Facilities Reporting</h2>'
     		// loop through our group intervals and generate a label with a colored square for each interval
 			// this legend formatting is based on the Leaflet chloropleth tutorial https://leafletjs.com/examples/choropleth/
     for (var i = 0; i < grades.length; i++) {
