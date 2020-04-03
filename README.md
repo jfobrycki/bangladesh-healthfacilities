@@ -38,7 +38,7 @@ offering ANC where ANC services are offered on indicated days: Provides everyday
 </ol>
 
 Data from the survey were transcribed into a csv file, with divisions listed by rows.
-
+<!-- file names are case sensitive on Github -->
 ![Example table](images/TableExample.png)  
 
 [QGIS](https://qgis.org/en/site/) was used to view the GADM file for Bangladesh, specifically the administrative level 1 layer that shows the divisions in Bangladesh. This csv file was added to QGIS.
