@@ -118,13 +118,24 @@
 		}					/* could also re-arrange the legend, layerlist and map source data to provide larger font on tooltip*/
 		/* Modifying how the control layers appear*/
 		.leaflet-control-layers{ 
-    		width:215px;
-    		background-position:3px 50% ;
+    		width:300px;
+    		/* background-position:3px 50% ; */
     		padding:3px;
-    		padding-left:5px;
+    		padding-left:3px;
     		text-decoration:none;
     		line-height:36px;
 			font-size: larger;
+			font-family: 'Source Sans Pro', sans-serif;
+			font-weight: 400;
+			font-size: 1.2em;
+		}
+
+		.leaflet-control-layers b{
+			padding-left: 5px;
+		}
+
+		.leaflet-control-layers-list {
+			margin: 10px;
 		}
 
 		/* Use float property to make two-column layout */
@@ -147,6 +158,24 @@
 			font-size: 20px;
 			width: 250px;
     		height: 160px;
+			font-family: 'Source Sans Pro', sans-serif;
+			font-weight: 400;
+			font-size: 1.5em;
+			padding: 15px;
+			box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+			background: #fff;
+			border-radius: 5px;
+
+		}
+
+		.legend h2 {
+			font-family: 'Source Sans Pro', sans-serif;
+			font-weight: 400;
+			font-size: 1.4em;
+			letter-spacing: 0em;
+			font-style:normal;
+			margin: 10px 0;
+			line-height: 0.9em;
 		}
 		
 		.legend i {
@@ -198,7 +227,7 @@
 				<li>Visit my LinkedIn account <a href="https://www.linkedin.com/in/john-f-obrycki-1a3b032b">Profile</a></li>
 			</ul>
 			</div>
-			<div class="column">
+			<div class="second-column">
 				<h2>Data sources</h2>
 				<p>
 				Data for the map came from the following two sources: <br>
@@ -208,6 +237,8 @@
 				</p>
 			</div>
 		</div>
+	
+	</section>
 	<footer>
 		<hr>
 			<a href="https://newmapsplus.github.io">
@@ -218,7 +249,6 @@
 				<img src="https://newmapsplus.github.io/assets/graphics/logo-2018-geography-75px-h.png" alt="University of Kentucky Geography">
 			</a>
 		</footer>
-	</section>
 
 	<!-- add Leaflet JS script -->
 	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
@@ -393,7 +423,7 @@ var legend = L.control({position: 'bottomleft'});
        		grades = [0, 25, 50, 75, 100],
 			labels = [];
 			// This adds in the map legend title
-			div.innerHTML += '<b>Percent of Healthcare Facilities Reporting</b><br><br>'
+			div.innerHTML += '<h2>Percent of Healthcare Facilities Reporting</h2>'
     		// loop through our group intervals and generate a label with a colored square for each interval
 			// this legend formatting is based on the Leaflet chloropleth tutorial https://leafletjs.com/examples/choropleth/
     for (var i = 0; i < grades.length; i++) {
